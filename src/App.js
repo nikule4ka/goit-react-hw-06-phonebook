@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import shortid from 'shortid';
+
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
@@ -47,22 +47,22 @@ class App extends Component {
   //   }));
   // };
 
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
-  };
+  // changeFilter = e => {
+  //   this.setState({ filter: e.currentTarget.value });
+  // };
 
-  getVisibleContacts = () => {
-    const { filter, contacts } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-    if (!filter.trim()) {
-      return contacts;
-    }
-    return contacts.filter(
-      ({ name, number }) =>
-        name.toLowerCase().includes(normalizedFilter) ||
-        number.includes(normalizedFilter),
-    );
-  };
+  // getVisibleContacts = () => {
+  //   const { filter, contacts } = this.state;
+  //   const normalizedFilter = filter.toLowerCase();
+  //   if (!filter.trim()) {
+  //     return contacts;
+  //   }
+  //   return contacts.filter(
+  //     ({ name, number }) =>
+  //       name.toLowerCase().includes(normalizedFilter) ||
+  //       number.includes(normalizedFilter),
+  //   );
+  // };
 
   render() {
     // const { filter } = this.state;
@@ -74,7 +74,7 @@ class App extends Component {
         <ContactForm />
 
         <h2>Contacts</h2>
-        {/* <Filter value={filter} onChange={this.changeFilter} /> */}
+        <Filter />
         <ContactList />
       </div>
     );
