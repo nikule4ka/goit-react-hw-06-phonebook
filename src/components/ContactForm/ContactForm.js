@@ -13,6 +13,14 @@ class ContactForm extends Component {
   hanldeChange = e => {
     const { name, value } = e.currentTarget;
 
+    const existContact = this.props.state.contacts.items.find(
+      newContact => newContact.name === this.state.name,
+    );
+
+    if (existContact) {
+      return alert(`${existContact.name} is already in contacts`);
+    }
+
     this.setState({
       [name]: value,
     });
@@ -37,6 +45,8 @@ class ContactForm extends Component {
             name="name"
             value={name}
             onChange={this.hanldeChange}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             placeholder="Name..."
             required
           />

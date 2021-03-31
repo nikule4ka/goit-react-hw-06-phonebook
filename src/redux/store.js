@@ -28,8 +28,12 @@ const contactsPersistConfig = {
   blacklist: ['filter'],
 };
 
+const allContacts = persistReducer(contactsPersistConfig, contactsReducer);
+
 const store = configureStore({
-  reducer: persistReducer(contactsPersistConfig, contactsReducer),
+  reducer: {
+    contacts: allContacts,
+  },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });

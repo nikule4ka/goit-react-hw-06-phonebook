@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import * as contactsActions from '../../redux/contacts/contacts-action';
+
 import s from './ContactList.module.css';
 
 const ContactList = ({ contacts, onDeleteContacts }) => (
@@ -36,20 +35,4 @@ ContactList.propTypes = {
   ),
   onDeleteContacts: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = state => {
-  const contacts = state.contacts.items.filter(
-    ({ name, number }) =>
-      name.toLowerCase().includes(state.contacts.filter.toLowerCase()) ||
-      number.includes(state.contacts.filter),
-  );
-  return {
-    contacts,
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  onDeleteContacts: id => dispatch(contactsActions.deleteContact(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default ContactList;
