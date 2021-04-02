@@ -13,14 +13,6 @@ class ContactForm extends Component {
   hanldeChange = e => {
     const { name, value } = e.currentTarget;
 
-    const existContact = this.props.state.contacts.items.find(
-      newContact => newContact.name === this.state.name,
-    );
-
-    if (existContact) {
-      return alert(`${existContact.name} is already in contacts`);
-    }
-
     this.setState({
       [name]: value,
     });
@@ -28,6 +20,13 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const existContact = this.props.state.contacts.items.find(
+      newContact => newContact.name === this.state.name,
+    );
+
+    if (existContact) {
+      return alert(`${existContact.name} is already in contacts`);
+    }
 
     this.props.onSubmit(this.state);
     this.setState({ name: '', number: '' });
@@ -71,7 +70,7 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  state,
+  contacts: state.contacts.items,
 });
 
 const mapDispatchToProps = dispatch => ({
